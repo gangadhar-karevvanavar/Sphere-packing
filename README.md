@@ -1,35 +1,50 @@
 # An Encoder-Decoder Approach for Packing Circles
 
-> :warning: **It may take a few minutes to load all 11 .gif files in this readme. In this anonymized version, the formatting may be slightly disoriented.**
+This repository contains implementation codes for the paper:
 
-A ```.gif``` file as below was made by saving the centres returned by the encoder every 200 epochs till we obtain a satisfactory packing layout. The total number of epochs 
-of training goes more than 20,000.
+**"An Encoder-Decoder Approach for Packing Circles"**
 
-The values of ```r```: radius of smaller circle and ```R```: radius of the larger circle are chosen such that a packing arrangement without significant overlap can be found.
+---
 
-Here are two different instances of packing 14 unit circles in a larger circle.\
-<img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/14_0.gif" width="400" height="400" /> <img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/14_1.gif" width="400" height="400" />
+## Paper Summary
 
+This work studies the classical geometric optimization problem of packing identical circles within a larger circle using a novel neural-network-based encoder-decoder framework.
 
-Here is one failed attempt to pack 14 circles for the same values of ```r``` and ```R``` as above. We restart the optimization in that case.\
-<img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/14_f.gif" width="400" height="400" /> 
+Circle packing problems arise in several areas including:
+- Information theory
+- Coding theory
+- Wireless communications
+- Resource allocation
+- Computational geometry
 
-Towards the end of training, a circle rattles around its final centre and converges.
+The objective is to place smaller circles completely inside a larger circle while minimizing or avoiding overlap among them. Since overlap constraints are inherently non-convex, obtaining globally optimal solutions is computationally challenging.
 
-<img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/13_0.gif" width="400" height="400" /> <img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/15_0.gif" width="400" height="400" /> 
+This work proposes a learning-based encoder-decoder architecture consisting of:
+- Encoder block
+- Perturbation block
+- Decoder block
 
-(above) Packing 13 and 15 circles respectively.
+The proposed framework operates as follows:
+- The encoder receives the index of a circle as input and predicts its center coordinates.
+- A normalization layer ensures the predicted center lies within the feasible packing region.
+- A perturbation layer introduces controlled perturbations while restricting deviations within the radius of the smaller circle.
+- The decoder estimates the intended circle index from the perturbed center coordinates.
 
-<img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/18_0.gif" width="400" height="400" /> <img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/19_0.gif" width="400" height="400" /> 
+Both the encoder and decoder are parameterized using neural networks and jointly optimized to minimize decoding error.
 
-(above) Packing 18 and 19 circles respectively.
+Key contributions include:
+- A novel encoder-decoder formulation for geometric packing problems
+- Integration of normalization and perturbation layers for feasibility control
+- Learning-based generation of circle configurations
+- Competitive packing performance compared to classical heuristic methods
+- A framework extendable to higher-dimensional and non-circular object packing problems
 
-However, trying to pack a larger number of circles by training a similar model converges to a solution with room for improvement.\
-<img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/27_0.gif" width="400" height="400" /> <img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/33_0.gif" width="400" height="400" />
+The proposed approach provides sub-optimal yet computationally efficient packing solutions and demonstrates the applicability of deep learning methods to non-convex geometric optimization problems.
 
-(above) Packing 27 and 33 circles respectively.
+---
 
-Similar to packing in circles, circles can also be packed in squares.\
-In the below, we recreate two trivial packing arrangements with 12 and 16 circles respectively.
-<img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/12-0.gif" width="400" height="400" /> <img src="https://github.com/akshaykiranjose/Circle-Packing/blob/master/figures/16-0.gif" width="400" height="400" />
+## Paper Links
+
+### IEEE
+[IEEE Xplore](https://ieeexplore.ieee.org/document/10619689)
 
